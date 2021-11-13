@@ -14,10 +14,7 @@ const Signup=()=>{
         reader.readAsDataURL(e.target.files[0])
         
     }
-    useEffect(()=>{
-       // removeCookie()
-        setCookie()
-    },[uri])
+
     
     return(
         <SignupContainer>

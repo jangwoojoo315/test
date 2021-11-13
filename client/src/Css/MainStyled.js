@@ -2,11 +2,12 @@ import styled from 'styled-components';
 
 export const MainContainer=styled.div`
     .header{
-        background-image:url(/images/header.png);
+        background-image:url(${(props)=>(props.Role)==='mento'?`/images/mento-header.png`:`/images/menti-header.png`});
         background-repeat:no-repeat;
         width:420px;
         height:240px;
         background-size:420px 240px;
+       
         
     }
     .welcome-label{
@@ -42,7 +43,8 @@ export const MainContainer=styled.div`
         height: 18px;
         left:10px;
         top: 10px;
-        border-bottom:#BDC4CB 1px solid;
+
+        border-bottom: ${(props)=>(props.Role)==='mento'?`#854DF3 1px solid;`:`gray 1px solid;`}
         padding-bottom:5px;
         font-family: NanumSquare;
         font-style: normal;
@@ -50,7 +52,7 @@ export const MainContainer=styled.div`
         font-size: 16px;
         line-height: 18px;
 
-        color:#BDC4CB;
+        color:${(props)=>(props.Role)==='mento'?`#854DF3;`:`gray;`};
     }
     .menti-btn{
         position: absolute;
@@ -58,7 +60,7 @@ export const MainContainer=styled.div`
         height: 18px;
         left:185px;
         top: 10px;
-        border-bottom:#BDC4CB 1px solid;
+        border-bottom:${(props)=>(props.Role)==='menti'?`#854DF3 1px solid;`:`gray 1px solid;`}
         padding-bottom:5px;
         font-family: NanumSquare;
         font-style: normal;
@@ -66,7 +68,7 @@ export const MainContainer=styled.div`
         font-size: 16px;
         line-height: 18px;
 
-        color:#BDC4CB;
+        color:${(props)=>(props.Role)==='menti'?`#854DF3;`:`gray;`};
     }
     .id{
         position: absolute;
@@ -76,6 +78,83 @@ export const MainContainer=styled.div`
         top: 57px;     
 
         font-weight:bold;
+    }
+    .college{
+        position: absolute;
+        height: 16px;
+        left: 122px;
+        top: 83px;
+        
+        font-family: NanumSquare;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 16px;
+        
+        display: flex;
+        align-items: flex-end;
+    
+        color: #999999;        
+    }
+    .major{
+        position: absolute;
+        height: 16px;
+        left: 122px;
+        top: 100px;
+        
+        font-family: NanumSquare;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 16px;
+        
+        display: flex;
+        align-items: flex-end;
+        
+        color: #999999;        
+    }
+    .point-label{
+        position: absolute;
+        width: 81px;
+        height: 36px;
+        left: 247px;
+        top: 45px;        
+        border: 1px solid #EFEEEE;
+        box-sizing: border-box;
+        border-radius: 30px;
+        padding-top:9px;
+    }
+    .temp-title{
+        position: absolute;
+        height: 16px;
+        left: 12px;
+        top: 150px;
+        
+        font-family: NanumSquare;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 16px;
+        
+        display: flex;
+        align-items: flex-end;        
+    }
+    .temp-smile{
+        position: absolute;
+        width: 29px;
+        height: 16px;
+        left: 300px;
+        top: 150px;
+        
+        font-family: NanumSquare;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 16px;
+        /* identical to box height */
+        
+        display: flex;
+        align-items: flex-end;       
     }
     progress {
         -webkit-appearance: none;
@@ -97,6 +176,57 @@ export const MainContainer=styled.div`
          
       }
 
+.college-mentoring-title-purple{
+    position: absolute;
+    width:120px;
+    height: 20px;
+    left: 20px;
+    top: 400px;
+    
+    font-family: NanumSquare;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 20px;
+    
+    color: #854DF3;    
+}
+.college-mentoring-title-black{
+    position: absolute;
+    height: 20px;
+    left: 120px;
+    top: 400px;
+    
+    font-family: NanumSquare;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 20px;
+    
+    color: black;    
+}
+.write{
+    position:fixed;
+    bottom:80px;
+    left:80%;
+}
+.footer{
+    position:fixed;
+    bottom:0;
+    width:100%;
+    height:60px; 
+   margin-top:auto;
+    
+    background: #FFFFFF;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.08);
+    border-radius: 30px 30px 0px 0px;  
+
+    display:flex;
+    flex-direction:row;
+    justify-content: space-evenly;
+
+    padding-top:10px;
+}
 
  `;
  

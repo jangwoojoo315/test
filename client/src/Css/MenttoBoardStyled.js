@@ -4,8 +4,22 @@ export const MentoBoardStyled = styled.div`
   input::placeholder {
     color: #dadada;
   }
+  input {
+    color: ${(props) => {
+      if (props.deadline) {
+        return `#999999`;
+      }
+    }};
+  }
   textarea::placeholder {
     color: #dadada;
+  }
+  textarea {
+    color: ${(props) => {
+      if (props.deadline) {
+        return `#999999`;
+      }
+    }};
   }
   .header {
     display: flex;
@@ -171,15 +185,30 @@ export const MentoBoardStyled = styled.div`
     height: 5px;
     background-color: #f2f3f7;
   }
-
-  .board-title {
+  /////////////////////////////게시판글작성/////////////////
+  .board-title-container {
+    display: flex;
+    flex-direction: row;
     position: absolute;
-    width: 90%;
-    left: 20px;
     top: 195px;
+    height: 30px;
+    left: 20px;
+    width: 90%;
+    border-bottom: 1px solid #f3f3f3;
+  }
+  .deadline-img {
+    display: ${(props) => {
+      if (!props.deadline) {
+        return `none`;
+      }
+    }};
+    margin-right: 1%;
+    height: 25px;
+  }
+  .board-title {
     padding-bottom: 2%;
     border: none;
-    border-bottom: 1px solid #f3f3f3;
+    width: 100%;
     font-family: NanumSquare;
     font-style: normal;
     font-weight: normal;
@@ -209,6 +238,14 @@ export const MentoBoardStyled = styled.div`
     height: 8px;
     background-color: #f2f3f7;
   }
+  //////////////////////게시글옵션///////////////////////
+  .board-option {
+    color: ${(props) => {
+      if (props.deadline) {
+        return `#999999`;
+      }
+    }};
+  }
   ////////////////수용 가능 인원 수////////////////////
   .people-num {
     position: absolute;
@@ -235,6 +272,7 @@ export const MentoBoardStyled = styled.div`
     line-height: 24px;
   }
   .people-minus-btn {
+    display: ${(props) => (props.regist ? `none` : `""`)};
     position: absolute;
     height: 24px;
     left: 280px;
@@ -253,6 +291,7 @@ export const MentoBoardStyled = styled.div`
     line-height: 24px;
   }
   .people-plus-btn {
+    display: ${(props) => (props.regist ? `none` : `""`)};
     position: absolute;
     height: 24px;
     left: 340px;
@@ -293,6 +332,7 @@ export const MentoBoardStyled = styled.div`
     line-height: 24px;
   }
   .period-minus-btn {
+    display: ${(props) => (props.regist ? `none` : `""`)};
     position: absolute;
     height: 24px;
     left: 280px;
@@ -311,6 +351,7 @@ export const MentoBoardStyled = styled.div`
     line-height: 24px;
   }
   .period-plus-btn {
+    display: ${(props) => (props.regist ? `none` : `""`)};
     position: absolute;
     height: 24px;
     left: 340px;
@@ -384,7 +425,7 @@ export const MentoBoardStyled = styled.div`
     justify-content: space-evenly;
   }
   .deadline-btn {
-    background: #854df3;
+    background: ${(props) => (props.deadline ? `#F3F3F3` : `#854df3`)};
     border-radius: 4px;
     border: none;
     width: 100%;
@@ -398,10 +439,10 @@ export const MentoBoardStyled = styled.div`
 
     letter-spacing: -0.003em;
 
-    color: #ffffff;
+    color: ${(props) => (props.deadline ? `#A7A7A7` : ` #ffffff`)};
   }
   .modify-btn {
-    background: #b694f8;
+    background: ${(props) => (props.deadline ? `#F3F3F3` : `#b694f8`)};
     border-radius: 4px;
     border: none;
     width: 100%;
@@ -415,7 +456,7 @@ export const MentoBoardStyled = styled.div`
 
     letter-spacing: -0.003em;
 
-    color: #ffffff;
+    color: ${(props) => (props.deadline ? `#A7A7A7` : ` #ffffff`)};
     margin-left: 1%;
     margin-right: 1%;
   }

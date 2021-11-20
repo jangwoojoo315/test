@@ -1,8 +1,18 @@
 import React, { useState } from "react";
 import { MentoBoardStyled } from "../Css/MenttoBoardStyled";
 import { useHistory } from "react-router";
+import Alert from "./Alert";
+import { useRef } from "react";
+import { getCookie } from "../Common/Cookie";
 const MentoBoard = () => {
   const history = useHistory();
+  const [userInfo, setUserInfo] = useState({
+    id: getCookie("id"),
+    college: getCookie("college"),
+    major: getCookie("major"),
+    temp: getCookie("temp"),
+    point: getCookie("point"),
+  });
   const [boardInfo, setBoardInfo] = useState({
     boardTitle: "",
     peopleNum: 1,
@@ -21,7 +31,7 @@ const MentoBoard = () => {
       if (boardInfo.peopleNum < 5) {
         setBoardInfo((prev) => ({ ...prev, peopleNum: prev.peopleNum + 1 }));
       }
-    } else if (e.target.className == "period-plus-btn") {
+    } else if (e.target.className === "period-plus-btn") {
       if (boardInfo.period < 7) {
         setBoardInfo((prev) => ({ ...prev, period: prev.period + 1 }));
       }
@@ -35,7 +45,7 @@ const MentoBoard = () => {
           peopleNum: prev.peopleNum - 1,
         }));
       }
-    } else if (e.target.className == "period-minus-btn") {
+    } else if (e.target.className === "period-minus-btn") {
       if (boardInfo.period > 1) {
         setBoardInfo((prev) => ({ ...prev, period: prev.period - 1 }));
       }
@@ -47,16 +57,27 @@ const MentoBoard = () => {
     }
   };
   const onClickDeadline = () => {
-    setBoardInfo((prev) => ({ ...prev, deadline: true }));
+    if (!boardInfo.deadline) {
+      setBoardInfo((prev) => ({ ...prev, deadline: true }));
+      sampleRef.current.setOpen(true);
+    }
   };
   const onClickModify = () => {
-    setBoardInfo((prev) => ({ ...prev, regist: false }));
+    if (!boardInfo.deadline)
+      setBoardInfo((prev) => ({ ...prev, regist: false }));
   };
+  const sampleRef = useRef();
   const onClickDelete = () => {
     setBoardInfo((prev) => ({ ...prev, delete: true }));
   };
+
   return (
-    <MentoBoardStyled boardtitle={boardInfo.boardTitle}>
+    <MentoBoardStyled
+      boardtitle={boardInfo.boardTitle}
+      regist={boardInfo.regist}
+      deadline={boardInfo.deadline}
+    >
+      <Alert alert="조기 마감 처리 했습니다." ref={sampleRef} />
       <div className="header">
         <label className="back">
           <img
@@ -70,11 +91,11 @@ const MentoBoard = () => {
       </div>
       <div>
         <label className="userinfo-title">멘토 정보</label>
-        <label className="id">아이디님</label>
-        <label className="college">...대학교</label>
-        <label className="major">산업디자인학과</label>
-        <span className="temp">36℃</span>
-        <progress value="36.5" max="100"></progress>
+        <label className="id">{userInfo.id}님</label>
+        <label className="college">{userInfo.college}</label>
+        <label className="major">{userInfo.major}</label>
+        <span className="temp">{userInfo.temp}℃</span>
+        <progress value={userInfo.temp} max="100"></progress>
         <img
           className="temp-smile-img"
           src="./images/temp-smile.png"
@@ -84,15 +105,25 @@ const MentoBoard = () => {
         <span className="underbar-first"></span>
       </div>
       <div className="board">
-        <input
-          className="board-title"
-          placeholder="제목을 입력해주세요(18자 이내)"
-          onChange={onChangeBoardTitle}
-          value={boardInfo.boardTitle}
-        ></input>
+        <div className="board-title-container">
+          <img
+            className="deadline-img"
+            src="/images/deadline-btn.png"
+            alt="deadline-btn"
+            width="40px"
+          />
+          <input
+            className="board-title"
+            placeholder="제목을 입력해주세요(18자 이내)"
+            onChange={onChangeBoardTitle}
+            value={boardInfo.boardTitle}
+            readOnly={boardInfo.regist ? true : false}
+          ></input>
+        </div>
         <textarea
           className="board-info"
           placeholder="멘토링할 과목에 대한 상세한 설명과 멘토의 설명을 입력해주세요(220자 이내)"
+          readOnly={boardInfo.regist ? true : false}
         ></textarea>
         <span className="underbar-second" />
       </div>
@@ -156,6 +187,7 @@ const MentoBoard = () => {
             <input
               className="openchat-link-input"
               placeholder="오픈 채팅방 링크를 입력해주세요."
+              readOnly={boardInfo.regist ? true : false}
             />
           </span>
         </div>

@@ -1,8 +1,14 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-export const MainContainer=styled.div`
+export const MainContainer = styled.div`
+.container{
+    height:100vh;
+}
     .header{
-        background-image:url(${(props)=>(props.Role)==='mento'?`/images/mento-header.png`:`/images/menti-header.png`});
+        background-image:url(${(props) =>
+          props.Role === "mento"
+            ? `/images/mento-header.png`
+            : `/images/menti-header.png`});
         background-repeat:no-repeat;
         width:420px;
         height:240px;
@@ -44,7 +50,8 @@ export const MainContainer=styled.div`
         left:10px;
         top: 10px;
 
-        border-bottom: ${(props)=>(props.Role)==='mento'?`#854DF3 1px solid;`:`gray 1px solid;`}
+        border-bottom: ${(props) =>
+          props.Role === "mento" ? `#854DF3 1px solid;` : `gray 1px solid;`}
         padding-bottom:5px;
         font-family: NanumSquare;
         font-style: normal;
@@ -52,7 +59,7 @@ export const MainContainer=styled.div`
         font-size: 16px;
         line-height: 18px;
 
-        color:${(props)=>(props.Role)==='mento'?`#854DF3;`:`gray;`};
+        color:${(props) => (props.Role === "mento" ? `#854DF3;` : `gray;`)};
     }
     .menti-btn{
         position: absolute;
@@ -60,7 +67,8 @@ export const MainContainer=styled.div`
         height: 18px;
         left:185px;
         top: 10px;
-        border-bottom:${(props)=>(props.Role)==='menti'?`#854DF3 1px solid;`:`gray 1px solid;`}
+        border-bottom:${(props) =>
+          props.Role === "menti" ? `#854DF3 1px solid;` : `gray 1px solid;`}
         padding-bottom:5px;
         font-family: NanumSquare;
         font-style: normal;
@@ -68,7 +76,7 @@ export const MainContainer=styled.div`
         font-size: 16px;
         line-height: 18px;
 
-        color:${(props)=>(props.Role)==='menti'?`#854DF3;`:`gray;`};
+        color:${(props) => (props.Role === "menti" ? `#854DF3;` : `gray;`)};
     }
     .id{
         position: absolute;
@@ -178,7 +186,7 @@ export const MainContainer=styled.div`
 
 .college-mentoring-title-purple{
     position: absolute;
-    width:120px;
+    
     height: 20px;
     left: 20px;
     top: 400px;
@@ -193,8 +201,8 @@ export const MainContainer=styled.div`
 }
 .college-mentoring-title-black{
     position: absolute;
-    height: 20px;
-    left: 120px;
+   
+    left: 180px;
     top: 400px;
     
     font-family: NanumSquare;
@@ -204,6 +212,47 @@ export const MainContainer=styled.div`
     line-height: 20px;
     
     color: black;    
+}
+.board-list{
+     position:relative;
+     top:28%;
+     width:100%;
+}
+.board-detail{
+    display:flex;
+    flex-direction:row;
+    padding-bottom:5%;
+    width:90%;
+    margin-left:5%;
+    border-bottom:1px solid #EBEBEB;
+}
+.board-detail-profile{
+    width:30%;
+    background-color:gray;
+    margin-left:10%;
+}
+.board-detail-content{
+    display:flex;
+    flex-direction:column;
+    align-items: flex-start;
+    margin-left:5%;
+
+}
+.board-title{
+    font-size:16px;
+    font-weight:bold;
+}
+.board-id{
+    font-size:15px;
+    color:#797979;
+}
+.board-college{
+    font-size:13px;
+    color:#C4C4C4;
+}
+.board-major{
+    font-size:13px;
+    color:#C4C4C4;
 }
 .write{
     position:fixed;
@@ -229,5 +278,3 @@ export const MainContainer=styled.div`
 }
 
  `;
- 
- 

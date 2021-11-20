@@ -1,14 +1,12 @@
-import Cookie from 'universal-cookie'
+import Cookie from "universal-cookie";
 
-const cookies=new Cookie();
-export const setCookie=(data)=>{
-    console.log(data)
-    return cookies.set('uri',data,{path:'/'})
-}
-export const getCookie=()=>{
-    
-    return cookies.get('uri')
-}
-export const removeCookie=()=>{
-    return cookies.remove('uri')
-}
+const cookies = new Cookie();
+export const setCookie = (key, data) => {
+  return cookies.set(key, data, { path: "/" });
+};
+export const getCookie = (key) => {
+  return cookies.get(key);
+};
+export const removeCookie = (key) => {
+  return cookies.remove(key);
+};
